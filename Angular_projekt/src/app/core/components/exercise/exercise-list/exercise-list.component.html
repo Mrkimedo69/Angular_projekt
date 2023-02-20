@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-success" (click)="onNewExercise()">New Exercise</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-exercise-piece
+        *ngFor="let exerciseEl of exercises; let i = index"
+        [exercise]="exerciseEl"
+        [index]="i"></app-exercise-piece>
+    </div>
+  </div>
+  
+  
