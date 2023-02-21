@@ -47,16 +47,22 @@ export class EditExerciseComponent implements OnInit {
   private initForm() {
     let exerciseName = '';
     let exerciseDescription = ''
+    let exerciseImage = ''
+    let exerciseVideo = ''
 
     if (this.editMode) {
       const exercise = this.exerciseService.getExercise(this.id);
       exerciseName = exercise.exerciseName
       exerciseDescription = exercise.exerciseDescription
+      exerciseImage = exercise.exerciseImage
+      exerciseVideo= exercise.exerciseVideo
     }
 
     this.exerciseForm = new FormGroup({
       exerciseName: new FormControl(exerciseName, Validators.required),
       exerciseDescription: new FormControl(exerciseDescription, Validators.required),
+      exerciseImage: new FormControl(exerciseImage, Validators.required),
+      exerciseVideo: new FormControl(exerciseVideo, Validators.required),
     });
   }
 }
