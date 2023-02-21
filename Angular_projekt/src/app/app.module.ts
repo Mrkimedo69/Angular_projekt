@@ -12,7 +12,8 @@ import { EditExerciseComponent } from './core/components/exercise/edit-exercise/
 import { ExerciseDetailsComponent } from './core/components/exercise/exercise-details/exercise-details.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ExercisePieceComponent } from './core/components/exercise/exercise-list/exercise-piece/exercise-piece.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SafePipe } from './shared/safeulr.pipe';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ExerciseDetailsComponent,
     DropdownDirective,
     ExercisePieceComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
