@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="trainingForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!trainingForm.valid">
+            Save
+          </button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="trainingName">Name</label>
+            <input
+              type="text"
+              id="trainingName"
+              formControlName="trainingName"
+              class="form-control"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="trainingImage">Image URL</label>
+            <input
+              type="text"
+              id="trainingImage"
+              formControlName="trainingImage"
+              class="form-control"
+              #image
+            />
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="setCount">Sets</label>
+            <input type="text" id="setCount" class="form-control" formControlName="setCount" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="repCount">Reps</label>
+            <input type="text" id="repCount" class="form-control" formControlName="repCount" />
+          </div>
+        </div>
+      </div> -->
+    </form>
+  </div>
+</div>

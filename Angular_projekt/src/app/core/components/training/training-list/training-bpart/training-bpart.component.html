@@ -1,0 +1,20 @@
+<a
+  style="cursor: pointer"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  class="list-group-item clearfix"
+>
+  <div class="pull-left">
+    <h4 class="list-group-item-heading">{{ training.trainingName }}</h4>
+    <!-- <p class="list-group-item-text">Sets: {{ training.setCount }}</p>
+    <p class="list-group-item-text">Reps: {{ training.repCount }}</p> -->
+  </div>
+  <span class="pull-right">
+    <img
+      [src]="training.trainingImage"
+      alt="{{ training.trainingName }}"
+      class="img-responsive"
+      style="max-height: 50px"
+    />
+  </span>
+</a>
