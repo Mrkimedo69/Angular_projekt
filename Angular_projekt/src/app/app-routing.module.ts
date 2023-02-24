@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EditExerciseComponent } from './core/components/exercise/edit-exercise/edit-exercise.component';
-import { ExerciseDetailsComponent } from './core/components/exercise/exercise-details/exercise-details.component';
-import { ExerciseComponent } from './core/components/exercise/exercise.component';
-import { TrainingDetailsComponent } from './core/components/training/training-details/training-details.component';
-import { TrainingEditComponent } from './core/components/training/training-edit/training-edit.component';
-import { TrainingComponent } from './core/components/training/training.component';
+import { EditExerciseComponent } from './feature/components/exercise/edit-exercise/edit-exercise.component';
+import { ExerciseDetailsComponent } from './feature/components/exercise/exercise-details/exercise-details.component';
+import { ExerciseComponent } from './feature/components/exercise/exercise.component';
+import { TrainingDetailsComponent } from './feature/components/training/training-details/training-details.component';
+import { TrainingEditComponent } from './feature/components/training/training-edit/training-edit.component';
+import { TrainingComponent } from './feature/components/training/training.component';
 
 const routes: Routes = [
   {

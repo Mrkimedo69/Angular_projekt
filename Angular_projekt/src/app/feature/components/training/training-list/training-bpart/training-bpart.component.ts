@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { TrainingModel } from 'src/app/core/models/training.model';
+import { TrainingModel } from 'src/app/feature/models/training.model';
 
 @Component({
   selector: 'app-training-bpart',

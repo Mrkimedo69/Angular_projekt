@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { TrainingModel } from 'src/app/core/models/training.model';
-import { TrainingService } from 'src/app/core/services/training.service';
-import { ExerciseToTrainingService } from 'src/app/core/services/exerciseToTraining.service';
+import { TrainingModel } from 'src/app/feature/models/training.model';
+import { TrainingService } from 'src/app/feature/services/training.service';
+import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
 
 
 @Component({
