@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+
 import { TrainingModel } from 'src/app/core/models/training.model';
 import { TrainingService } from 'src/app/core/services/training.service';
+import { ExerciseToTrainingService } from 'src/app/core/services/exerciseToTraining.service';
+
 
 @Component({
   selector: 'app-training-details',
@@ -14,7 +17,8 @@ export class TrainingDetailsComponent {
 
   constructor(private trainingService: TrainingService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private exerciseToTrainingService: ExerciseToTrainingService) {
   }
 
   ngOnInit() {
@@ -36,4 +40,8 @@ export class TrainingDetailsComponent {
     this.router.navigate(['/trainings']);
   }
 
+  addExercise(){
+    console.log(this.exerciseToTrainingService.pushToTraining())
+    
+  }
 }

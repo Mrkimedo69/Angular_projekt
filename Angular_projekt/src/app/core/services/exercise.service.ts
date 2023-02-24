@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
+import { HttpClient } from '@angular/common/http';
 
 import { ExerciseModel } from "../models/exercise.model";
 
@@ -10,21 +11,39 @@ export class ExerciseService{
     exerciseChanged = new Subject<ExerciseModel[]>();
 
     private exercise: ExerciseModel[] = [];
+
+    exercises: ExerciseModel[]
+
+    exer_field: ExerciseModel
   
-    constructor() {}
+    constructor( private http: HttpClient) {
+      this.getExercises()
+        .subscribe(exercises =>{
+          this.exercises = exercises
+        })
+    }
   
+    // getPzzAppointments(): Observable<PzzAppointmentsModule[]> {    
+    //   const headers = new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8',
+    //     });    return this.http.get<PzzAppointmentsModule[]>(this.rest.getPzzAppointments, {      
+    //   headers: headers,      withCredentials: true,    });  }
+
     setExercise(exercise: ExerciseModel[]) {
       this.exercise = exercise;
       this.exerciseChanged.next(this.exercise.slice());
     }
   
-    getExercises() {
-      return this.exercise.slice();
+    getExercises():Observable<ExerciseModel[]> {
+       return this.http.get<ExerciseModel[]>('http://localhost:3001/exercise');
     }
   
+    // getExercise(index: number) {
+    //   return this.exercise[index];
+    // }
     getExercise(index: number) {
-      return this.exercise[index];
-    }
+      this.exer_field = this.exercises[index]
+      return this.exer_field
+   }
 
     addExercise(exercise: ExerciseModel) {
       this.exercise.push(exercise);
@@ -32,7 +51,7 @@ export class ExerciseService{
     }
   
     updateExercise(index: number, newExercise: ExerciseModel) {
-      this.exercise[index] = newExercise;
+      this.exercises[index] = newExercise;
       this.exerciseChanged.next(this.exercise.slice());
     }
   

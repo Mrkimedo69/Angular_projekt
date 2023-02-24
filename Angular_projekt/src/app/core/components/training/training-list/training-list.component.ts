@@ -10,7 +10,7 @@ import { TrainingService } from 'src/app/core/services/training.service';
   templateUrl: './training-list.component.html',
   styleUrls: ['./training-list.component.css']
 })
-export class TrainingListComponent implements OnInit, OnDestroy {
+export class TrainingListComponent implements OnInit {
 
   trainings: TrainingModel[];
   subscription: Subscription;
@@ -21,20 +21,19 @@ export class TrainingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.trainingService.trainingChanged
+    this.trainingService.trainingChanged
       .subscribe(
         (trainings: TrainingModel[]) => {
           this.trainings = trainings;
         }
       );
-    this.trainings = this.trainingService.getTrainings();
+  this.trainingService.getTrainings().subscribe((res) =>{
+    this.trainings = res 
+  })
   }
 
   onNewTraining() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
 }

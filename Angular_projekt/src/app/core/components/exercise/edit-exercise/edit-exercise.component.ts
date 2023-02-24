@@ -13,9 +13,6 @@ export class EditExerciseComponent implements OnInit {
   editMode = false;
   exerciseForm: FormGroup;
 
-  get ingredientsControls() {
-    return (this.exerciseForm.get('exercise') as FormArray).controls;
-  }
 
   constructor(private exerciseService: ExerciseService,
     private router: Router,
