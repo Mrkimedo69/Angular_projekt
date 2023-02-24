@@ -53,13 +53,14 @@ export class ExerciseService{
 
     }
   
-    updateExercise(index: number, newExercise: ExerciseModel) {
+    updateExercise(index: number, newExercise: ExerciseModel):Observable<ExerciseModel[]> {
       this.exercises[index] = newExercise;
       this.exerciseChanged.next(this.exercise.slice());
+      return this.http.put<ExerciseModel[]>('http://localhost:3001/exercise/:id',this.exercises[index])
     }
   
     deleteExercise(index: number) {
-      this.exercise.splice(index, 1);
+      this.exercise.splice(index, 1); 
       this.exerciseChanged.next(this.exercise.slice());
     }
   
