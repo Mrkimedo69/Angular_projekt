@@ -48,9 +48,10 @@ export class TrainingService{
       return this.http.post<TrainingModel[]>('http://localhost:3001/training',this.training)
     }
   
-    updateTraining(index: number, newTraining: TrainingModel) {
+    updateTraining(index: number, newTraining: TrainingModel):Observable<TrainingModel[]> {
       this.training[index] = newTraining;
       this.trainingChanged.next(this.training.slice());
+      return this.http.put<TrainingModel[]>('http://localhost:3001/training/:id',this.training[index])
     }
   
     deleteTraining(index: number) {
