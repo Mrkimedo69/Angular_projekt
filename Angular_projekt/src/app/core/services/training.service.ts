@@ -41,9 +41,11 @@ export class TrainingService{
       return this.training_field
    }
 
-    addTraining(training: TrainingModel) {
+    addTraining(training: TrainingModel):Observable<TrainingModel[]> {
       this.training.push(training);
       this.trainingChanged.next(this.training.slice());
+      console.log(this.training)
+      return this.http.post<TrainingModel[]>('http://localhost:3001/training',this.training)
     }
   
     updateTraining(index: number, newTraining: TrainingModel) {

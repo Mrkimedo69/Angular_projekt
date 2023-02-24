@@ -45,9 +45,12 @@ export class ExerciseService{
       return this.exer_field
    }
 
-    addExercise(exercise: ExerciseModel) {
+    addExercise(exercise: ExerciseModel):Observable<ExerciseModel[]> {
       this.exercise.push(exercise);
       this.exerciseChanged.next(this.exercise.slice());
+      console.log(this.exercise)
+      return this.http.post<ExerciseModel[]>('http://localhost:3001/exercise',this.exercise)
+
     }
   
     updateExercise(index: number, newExercise: ExerciseModel) {
