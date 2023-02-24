@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { ExerciseModel } from 'src/app/core/models/exercise.model';
 
@@ -7,9 +7,13 @@ import { ExerciseModel } from 'src/app/core/models/exercise.model';
   templateUrl: './exercise-piece.component.html',
   styleUrls: ['./exercise-piece.component.css']
 })
-export class ExercisePieceComponent {
+export class ExercisePieceComponent implements OnInit{
 
   @Input() exercise: ExerciseModel
   @Input() index: number
+
+  ngOnInit(){
+  
+  }
 
 }

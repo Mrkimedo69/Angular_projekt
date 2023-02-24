@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { ExerciseModel } from 'src/app/core/models/exercise.model';
 import { ExerciseService } from 'src/app/core/services/exercise.service';
+import { ExerciseToTrainingService } from 'src/app/core/services/exerciseToTraining.service';
 
 @Component({
   selector: 'app-exercise-details',
@@ -14,7 +15,8 @@ export class ExerciseDetailsComponent {
 
   constructor(private exerciseService: ExerciseService,
               private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private exerciseToTrainingService: ExerciseToTrainingService) {
   }
 
   ngOnInit() {
@@ -22,7 +24,7 @@ export class ExerciseDetailsComponent {
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
-          this.exercise = this.exerciseService.getExercise(this.id);
+          this.exercise  = this.exerciseService.getExercise(this.id);
         }
       );
   }
@@ -34,6 +36,11 @@ export class ExerciseDetailsComponent {
   onDeleteExercise() {
     this.exerciseService.deleteExercise(this.id);
     this.router.navigate(['/exercise']);
+  }
+
+  onAddTraining(){
+    console.log(this.exercise)
+    this.exerciseToTrainingService.pullExercise(this.exercise)
   }
 
 }

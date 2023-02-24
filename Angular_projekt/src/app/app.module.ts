@@ -17,6 +17,7 @@ import { TrainingEditComponent } from './core/components/training/training-edit/
 import { TrainingListComponent } from './core/components/training/training-list/training-list.component';
 import { TrainingDetailsComponent } from './core/components/training/training-details/training-details.component';
 import { TrainingBpartComponent } from './core/components/training/training-list/training-bpart/training-bpart.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TrainingBpartComponent } from './core/components/training/training-list
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

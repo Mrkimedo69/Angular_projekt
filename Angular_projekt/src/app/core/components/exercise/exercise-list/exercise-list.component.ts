@@ -10,7 +10,7 @@ import { ExerciseService } from 'src/app/core/services/exercise.service';
   templateUrl: './exercise-list.component.html',
   styleUrls: ['./exercise-list.component.css']
 })
-export class ExerciseListComponent implements OnInit, OnDestroy{
+export class ExerciseListComponent implements OnInit{
   exercises: ExerciseModel[]
   subscription: Subscription
 
@@ -20,20 +20,19 @@ export class ExerciseListComponent implements OnInit, OnDestroy{
 
 
     ngOnInit() {
-      this.subscription = this.exerciseService.exerciseChanged
-      .subscribe(
-        (exercises: ExerciseModel[]) => {
-          this.exercises = exercises;
-        }
-      );
-    this.exercises = this.exerciseService.getExercises();
+      this.exerciseService.exerciseChanged
+        .subscribe(
+          (exercises: ExerciseModel[]) => {
+            this.exercises = exercises;
+          }
+        );
+    this.exerciseService.getExercises().subscribe((res:ExerciseModel[]) =>{
+      this.exercises = res
+    })
     }
   
     onNewExercise() {
       this.router.navigate(['new'], {relativeTo: this.route});
     }
   
-    ngOnDestroy() {
-      this.subscription.unsubscribe();
-    }
 }

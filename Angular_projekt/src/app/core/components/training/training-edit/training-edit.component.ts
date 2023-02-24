@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ExerciseToTrainingService } from 'src/app/core/services/exerciseToTraining.service';
 
 import { TrainingService } from 'src/app/core/services/training.service';
 
@@ -17,7 +18,8 @@ export class TrainingEditComponent {
   constructor(
     private route: ActivatedRoute,
     private trainingService: TrainingService,
-    private router: Router
+    private router: Router,
+    private exerciseToTrainingService: ExerciseToTrainingService
   ) {}
 
   ngOnInit() {
@@ -44,14 +46,18 @@ export class TrainingEditComponent {
   private initForm() {
     let trainingName = '';
     let trainingImage = '';
+    let exercises = ''
     // let setCount = '';
     // let repCount = '';
 
 
     if (this.editMode) {
       const training = this.trainingService.getTraining(this.id);
+      const exercise = this.exerciseToTrainingService.pushToTraining()
+      console.log(exercise.exerciseName)
       trainingName = training.trainingName
       trainingImage = training.trainingImage
+      exercises = exercise.exerciseName
       // setCount = training.setCount
       // repCount = training.repCount
     }
