@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { ExerciseModel } from 'src/app/core/models/exercise.model';
-import { ExerciseService } from 'src/app/core/services/exercise.service';
-import { ExerciseToTrainingService } from 'src/app/core/services/exerciseToTraining.service';
+
+import { ExerciseModel } from 'src/app/feature/models/exercise.model';
+import { ExerciseService } from 'src/app/feature/services/exercise.service';
+import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
 
 @Component({
   selector: 'app-exercise-details',

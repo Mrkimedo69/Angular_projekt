@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormArray, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ExerciseService } from 'src/app/core/services/exercise.service';
+
+import { ExerciseService } from 'src/app/feature/services/exercise.service';
 
 @Component({
   selector: 'app-edit-exercise',

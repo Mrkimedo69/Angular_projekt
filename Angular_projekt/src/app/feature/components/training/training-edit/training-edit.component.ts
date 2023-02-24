@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { ExerciseToTrainingService } from 'src/app/core/services/exerciseToTraining.service';
 
-import { TrainingService } from 'src/app/core/services/training.service';
+import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
+import { TrainingService } from 'src/app/feature/services/training.service';
 
 @Component({
   selector: 'app-training-edit',

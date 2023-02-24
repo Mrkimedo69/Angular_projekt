@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ExerciseModel } from 'src/app/core/models/exercise.model';
+import { ExerciseModel } from 'src/app/feature/models/exercise.model';
 
 @Component({
   selector: 'app-exercise-piece',
