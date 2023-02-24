@@ -4,6 +4,6 @@ export interface TrainingModel{
     //exercises: ExerciseModel [],
     trainingName: string,
     trainingImage: string,
-    // setCount: number,
-    // repCount: number
+    setCount?: number,
+    repCount?: number
 }
