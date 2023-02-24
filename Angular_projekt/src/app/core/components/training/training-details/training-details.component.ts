@@ -37,7 +37,7 @@ export class TrainingDetailsComponent {
 
   onDeleteTraining() {
     this.trainingService.deleteTraining(this.id);
-    this.router.navigate(['/trainings']);
+    this.router.navigate(['/training']);
   }
 
   addExercise(){
