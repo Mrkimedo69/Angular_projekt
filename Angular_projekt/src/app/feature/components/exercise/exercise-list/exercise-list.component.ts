@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { ExerciseModel } from 'src/app/feature/models/exercise.model';
-import { ExerciseService } from 'src/app/feature/services/exercise.service';
 
 @Component({
   selector: 'app-exercise-list',
@@ -15,21 +14,10 @@ export class ExerciseListComponent implements OnInit{
   subscription: Subscription
 
   constructor(private router: Router,
-    private exerciseService: ExerciseService,
     private route: ActivatedRoute){}
 
 
-    ngOnInit() {
-      this.exerciseService.exerciseChanged
-        .subscribe(
-          (exercises: ExerciseModel[]) => {
-            this.exercises = exercises;
-          }
-        );
-    this.exerciseService.getExercises().subscribe((res:ExerciseModel[]) =>{
-      this.exercises = res
-    })
-    }
+    ngOnInit() {}
   
     onNewExercise() {
       this.router.navigate(['new'], {relativeTo: this.route});

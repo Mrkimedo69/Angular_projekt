@@ -16,12 +16,7 @@ export class TrainingService{
 
     training_field: TrainingModel
   
-    constructor(private http: HttpClient) {
-      this.getTrainings()
-        .subscribe(trainings =>{
-          this.trainings = trainings
-        })
-    }
+    constructor(private http: HttpClient) {}
   
     setTraining(training: TrainingModel[]) {
       this.training = training;
@@ -33,25 +28,17 @@ export class TrainingService{
     }
   
   
-    // getTraining(index: number) {
-    //   return this.training[index];
-    // }
-    getTraining(index: number) {
-      this.training_field = this.trainings[index]
+    getTraining(id: string) {
+      this.training_field = this.trainings[id]
       return this.training_field
    }
 
     addTraining(training: TrainingModel):Observable<TrainingModel[]> {
-      this.training.push(training);
-      this.trainingChanged.next(this.training.slice());
-      console.log(this.training)
-      return this.http.post<TrainingModel[]>('http://localhost:3001/training',this.training)
+      return this.http.post<TrainingModel[]>('http://localhost:3001/training/add',training)
     }
   
-    updateTraining(index: number, newTraining: TrainingModel):Observable<TrainingModel[]> {
-      this.trainings[index] = newTraining;
-      this.trainingChanged.next(this.training.slice());
-      return this.http.put<TrainingModel[]>('http://localhost:3001/training/:id',this.trainings[index])
+    updateTraining(id: string, newTraining: TrainingModel):Observable<TrainingModel[]> {
+      return this.http.put<any>('http://localhost:3001/training/edit',{id,newTraining})
     }
   
     deleteTraining(index: number) {

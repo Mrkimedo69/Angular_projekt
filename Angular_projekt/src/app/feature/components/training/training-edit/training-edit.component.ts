@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { TrainingModel } from 'src/app/feature/models/training.model';
 
-import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
+import { ExerciseToTrainingService } from 'src/app/feature/services/exercise-training.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
 
 @Component({
@@ -11,9 +12,10 @@ import { TrainingService } from 'src/app/feature/services/training.service';
   styleUrls: ['./training-edit.component.css']
 })
 export class TrainingEditComponent {
-  id: number;
+  id: string;
   editMode = false;
   trainingForm: FormGroup;
+  training: TrainingModel
 
   constructor(
     private route: ActivatedRoute,
@@ -23,18 +25,28 @@ export class TrainingEditComponent {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.editMode = params['id'] != null;
-      this.initForm();
-    });
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = params.id
+          this.editMode = params.id != null;
+          this.trainingService.getTrainings().subscribe((res) => {
+            this.training = res.find(p => p.id === this.id)
+          })
+        }
+      );
+      this.initForm()
   }
 
   onSubmit() {
     if (this.editMode) {
-      this.trainingService.updateTraining(this.id, this.trainingForm.value);
+      this.trainingService.updateTraining(this.id, this.trainingForm.value).subscribe((res)=>{
+        console.log(res)
+      });
     } else {
-      this.trainingService.addTraining(this.trainingForm.value);
+      this.trainingService.addTraining(this.trainingForm.value).subscribe((res)=>{
+        console.log(res)
+      });
     }
     this.onCancel();
   }
@@ -46,18 +58,18 @@ export class TrainingEditComponent {
   private initForm() {
     let trainingName = '';
     let trainingImage = '';
-    let exercises = ''
+    // let exercises = ''
     // let setCount = '';
     // let repCount = '';
 
 
     if (this.editMode) {
       const training = this.trainingService.getTraining(this.id);
-      const exercise = this.exerciseToTrainingService.pushToTraining()
-      console.log(exercise.exerciseName)
+      // const exercise = this.exerciseToTrainingService.pushToTraining()
+      // console.log(exercise.exerciseName)
       trainingName = training.trainingName
       trainingImage = training.trainingImage
-      exercises = exercise.exerciseName
+      // exercises = exercise.exerciseName
       // setCount = training.setCount
       // repCount = training.repCount
     }
