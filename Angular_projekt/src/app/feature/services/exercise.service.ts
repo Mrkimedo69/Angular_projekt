@@ -16,18 +16,8 @@ export class ExerciseService{
 
     exer_field: ExerciseModel
   
-    constructor( private http: HttpClient) {
-      this.getExercises()
-        .subscribe(exercises =>{
-          this.exercises = exercises
-        })
-    }
+    constructor( private http: HttpClient) {}
   
-    // getPzzAppointments(): Observable<PzzAppointmentsModule[]> {    
-    //   const headers = new HttpHeaders({'Content-Type': 'application/json;charset=UTF-8',
-    //     });    return this.http.get<PzzAppointmentsModule[]>(this.rest.getPzzAppointments, {      
-    //   headers: headers,      withCredentials: true,    });  }
-
     setExercise(exercise: ExerciseModel[]) {
       this.exercise = exercise;
       this.exerciseChanged.next(this.exercise.slice());
@@ -36,27 +26,19 @@ export class ExerciseService{
     getExercises():Observable<ExerciseModel[]> {
        return this.http.get<ExerciseModel[]>('http://localhost:3001/exercise');
     }
-  
-    // getExercise(index: number) {
-    //   return this.exercise[index];
-    // }
-    getExercise(index: number) {
-      this.exer_field = this.exercises[index]
+
+    getExercise(id: string) {
+      this.exer_field = this.exercises[id]
       return this.exer_field
    }
 
     addExercise(exercise: ExerciseModel):Observable<ExerciseModel[]> {
-      this.exercise.push(exercise);
-      this.exerciseChanged.next(this.exercise.slice());
-      console.log(this.exercise)
-      return this.http.post<ExerciseModel[]>('http://localhost:3001/exercise',this.exercise)
+      return this.http.post<ExerciseModel[]>('http://localhost:3001/exercise/add',exercise)
 
     }
   
-    updateExercise(index: number, newExercise: ExerciseModel):Observable<ExerciseModel[]> {
-      this.exercises[index] = newExercise;
-      this.exerciseChanged.next(this.exercise.slice());
-      return this.http.put<ExerciseModel[]>('http://localhost:3001/exercise/:id',this.exercises[index])
+    updateExercise(id: string, newExercise: ExerciseModel):Observable<ExerciseModel[]> {
+      return this.http.put<any>('http://localhost:3001/exercise/edit',{id,newExercise})
     }
   
     deleteExercise(index: number) {

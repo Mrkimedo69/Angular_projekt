@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { TrainingModel } from 'src/app/feature/models/training.model';
 import { TrainingService } from 'src/app/feature/services/training.service';
-import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
+import { ExerciseToTrainingService } from 'src/app/feature/services/exercise-training.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTr
 })
 export class TrainingDetailsComponent {
   training: TrainingModel;
-  id: number;
+  id: string;
 
   constructor(private trainingService: TrainingService,
               private route: ActivatedRoute,
@@ -25,8 +25,10 @@ export class TrainingDetailsComponent {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
-          this.training = this.trainingService.getTraining(this.id);
+          this.trainingService.getTrainings().subscribe((res) => {
+            this.training = res.find(p => p.id === params.id)
+            console.log(this.training)
+          })
         }
       );
   }
@@ -36,12 +38,12 @@ export class TrainingDetailsComponent {
   }
 
   onDeleteTraining() {
-    this.trainingService.deleteTraining(this.id);
-    this.router.navigate(['/training']);
+    // this.trainingService.deleteTraining(this.id);
+    // this.router.navigate(['/training']);
   }
 
-  addExercise(){
-    console.log(this.exerciseToTrainingService.pushToTraining())
+  // addExercise(){
+  //   console.log(this.exerciseToTrainingService.pushToTraining())
     
-  }
+  // }
 }

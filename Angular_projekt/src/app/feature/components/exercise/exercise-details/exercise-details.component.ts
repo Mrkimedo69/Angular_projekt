@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { ExerciseModel } from 'src/app/feature/models/exercise.model';
 import { ExerciseService } from 'src/app/feature/services/exercise.service';
-import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTraining.service';
+import { ExerciseToTrainingService } from 'src/app/feature/services/exercise-training.service';
 
 @Component({
   selector: 'app-exercise-details',
@@ -11,8 +11,8 @@ import { ExerciseToTrainingService } from 'src/app/feature/services/exerciseToTr
   styleUrls: ['./exercise-details.component.css']
 })
 export class ExerciseDetailsComponent {
-  exercise: ExerciseModel;
-  id: number;
+  exercise: ExerciseModel ;
+  id: string;
 
   constructor(private exerciseService: ExerciseService,
               private route: ActivatedRoute,
@@ -24,8 +24,10 @@ export class ExerciseDetailsComponent {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
-          this.exercise  = this.exerciseService.getExercise(this.id);
+          this.exerciseService.getExercises().subscribe((res) => {
+            this.exercise = res.find(p => p.id === params.id)
+            console.log(this.exercise)
+          })
         }
       );
   }
@@ -35,13 +37,13 @@ export class ExerciseDetailsComponent {
   }
 
   onDeleteExercise() {
-    this.exerciseService.deleteExercise(this.id);
-    this.router.navigate(['/exercise']);
+    // this.exerciseService.deleteExercise(this.id);
+    // this.router.navigate(['/exercise']);
   }
 
-  onAddTraining(){
-    console.log(this.exercise)
-    this.exerciseToTrainingService.pullExercise(this.exercise)
-  }
+  // onAddTraining(){
+  //   console.log(this.exercise)
+  //   this.exerciseToTrainingService.pullExercise(this.exercise)
+  // }
 
 }

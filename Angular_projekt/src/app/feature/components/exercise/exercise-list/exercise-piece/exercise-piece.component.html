@@ -1,14 +1,17 @@
 <a
   style="cursor: pointer"
-  [routerLink]="[index]"
   routerLinkActive="active"
   class="list-group-item clearfix"
+  *ngFor="let exerciseEl of exercises"
+  (click)="redirectDetailsExercise(exerciseEl.id)"
 >
-  <div class="pull-left">
-    <h4 class="list-group-item-heading">{{ exercise.exerciseName }}</h4>
-    <p class="list-group-item-text">{{ exercise.exerciseDescription }}</p>
+  <div>
+    <div class="pull-left">
+      <h4 class="list-group-item-heading">{{ exerciseEl?.exerciseName }}</h4>
+      <p class="list-group-item-text">{{ exerciseEl?.exerciseDescription }}</p>
+    </div>
+    <span class="pull-right">
+      <img [src]="exerciseEl?.exerciseImage" class="img-responsive" style="max-height: 50px" />
+    </span>
   </div>
-  <span class="pull-right">
-    <img [src]="exercise.exerciseImage" class="img-responsive" style="max-height: 50px" />
-  </span>
 </a>
