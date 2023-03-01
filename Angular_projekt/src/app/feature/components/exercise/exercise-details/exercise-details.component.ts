@@ -26,7 +26,6 @@ export class ExerciseDetailsComponent {
         (params: Params) => {
           this.exerciseService.getExercises().subscribe((res) => {
             this.exercise = res.find(p => p.id === params.id)
-            console.log(this.exercise)
           })
         }
       );
