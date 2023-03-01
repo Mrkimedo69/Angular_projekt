@@ -41,8 +41,8 @@ export class TrainingService{
       return this.http.put<any>('http://localhost:3001/training/edit',{id,newTraining})
     }
   
-    deleteTraining(index: number) {
-      this.training.splice(index, 1);
+    deleteTraining(id: number) {
+      this.training.splice(id, 1);
       this.trainingChanged.next(this.training.slice());
     }
   

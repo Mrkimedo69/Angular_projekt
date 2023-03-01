@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "../app-routing.module";
 
 import { SharedModule } from "../shared/shared.module";
-import { ExerciseModule } from "./components/exercise/exercise.module";
 import { TrainingModule } from "./components/training/training.module";
 
 
@@ -15,10 +14,9 @@ import { TrainingModule } from "./components/training/training.module";
         AppRoutingModule,
         SharedModule,
         ReactiveFormsModule,
-        ExerciseModule,
         TrainingModule
     ],
-    exports: [TrainingModule,ExerciseModule]
+    exports: [TrainingModule]
 })
 
 export class FeaturesModule{}

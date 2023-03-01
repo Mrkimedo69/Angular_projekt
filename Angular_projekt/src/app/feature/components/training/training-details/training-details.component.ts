@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 import { TrainingModel } from 'src/app/feature/models/training.model';
 import { TrainingService } from 'src/app/feature/services/training.service';
 import { ExerciseToTrainingService } from 'src/app/feature/services/exercise-training.service';
-
+import { ExerciseModel } from 'src/app/feature/models/exercise.model';
 
 @Component({
   selector: 'app-training-details',
@@ -14,6 +14,7 @@ import { ExerciseToTrainingService } from 'src/app/feature/services/exercise-tra
 export class TrainingDetailsComponent {
   training: TrainingModel;
   id: string;
+  exercises: ExerciseModel
 
   constructor(private trainingService: TrainingService,
               private route: ActivatedRoute,
@@ -27,7 +28,6 @@ export class TrainingDetailsComponent {
         (params: Params) => {
           this.trainingService.getTrainings().subscribe((res) => {
             this.training = res.find(p => p.id === params.id)
-            console.log(this.training)
           })
         }
       );
@@ -38,12 +38,22 @@ export class TrainingDetailsComponent {
   }
 
   onDeleteTraining() {
-    // this.trainingService.deleteTraining(this.id);
-    // this.router.navigate(['/training']);
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = params.id
+          this.trainingService.deleteTraining(+this.id);
+          this.router.navigate(['/training']);
+        }
+      )
+
   }
 
-  // addExercise(){
-  //   console.log(this.exerciseToTrainingService.pushToTraining())
+  addExercise(){
+    this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
     
-  // }
+  }
+  redirectDetailsExercise(id){
+    this.router.navigateByUrl("/exercise/"+id);
+  }
 }

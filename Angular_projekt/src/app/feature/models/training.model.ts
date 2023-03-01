@@ -1,7 +1,7 @@
 import {ExerciseModel} from './exercise.model'
 
 export interface TrainingModel{
-    //exercises: ExerciseModel [],
+    exercises: ExerciseModel [],
     id: string,
     trainingName: string,
     trainingImage: string,

@@ -41,9 +41,8 @@ export class ExerciseDetailsComponent {
     // this.router.navigate(['/exercise']);
   }
 
-  // onAddTraining(){
-  //   console.log(this.exercise)
-  //   this.exerciseToTrainingService.pullExercise(this.exercise)
-  // }
+  onAddTraining(){
+    this.exerciseToTrainingService.pullExercise(this.exercise)
+  }
 
 }
