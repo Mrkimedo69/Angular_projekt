@@ -1,3 +1,4 @@
+import { Type } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -28,7 +29,7 @@ export class EditExerciseComponent implements OnInit {
           this.id = params.id
           this.editMode = params.id != null;
           this.exerciseService.getExercises().subscribe((res) => {
-            this.exercise = res.find(p => p.id === this.id)
+          this.exercise = res.find(p => p.id === this.id)
           })
         }
       );
@@ -60,13 +61,13 @@ export class EditExerciseComponent implements OnInit {
     let exerciseImage = ''
     let exerciseVideo = ''
 
-    if (this.editMode) {
-      const exercise = this.exercise;
-      exerciseName = exercise.exerciseName
-      exerciseDescription = exercise.exerciseDescription
-      exerciseImage = exercise.exerciseImage
-      exerciseVideo= exercise.exerciseVideo
-     }
+    // if (this.editMode) {
+    //   const exercise = this.exerciseService.getExercise(this.id);
+    //   exerciseName = exercise.exerciseName
+    //   exerciseDescription = exercise.exerciseDescription
+    //   exerciseImage = exercise.exerciseImage
+    //   exerciseVideo= exercise.exerciseVideo
+    //  }
 
     this.exerciseForm = new FormGroup({
       exerciseName: new FormControl(exerciseName, Validators.required),

@@ -9,7 +9,7 @@ import { ExerciseComponent } from "./exercise.component";
 
 const routes: Routes = [
     {
-        path: 'exercise',
+        path: '',
         component: ExerciseComponent,
         children: [
           { path: 'new', component: EditExerciseComponent},
@@ -22,7 +22,7 @@ const routes: Routes = [
             component: EditExerciseComponent
           }
         ]
-      },
+    }
 ]
 
 

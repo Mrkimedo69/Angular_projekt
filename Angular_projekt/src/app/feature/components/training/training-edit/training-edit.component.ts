@@ -63,16 +63,16 @@ export class TrainingEditComponent {
     // let repCount = '';
 
 
-    if (this.editMode) {
-      const training = this.trainingService.getTraining(this.id);
-      // const exercise = this.exerciseToTrainingService.pushToTraining()
-      // console.log(exercise.exerciseName)
-      trainingName = training.trainingName
-      trainingImage = training.trainingImage
-      // exercises = exercise.exerciseName
-      // setCount = training.setCount
-      // repCount = training.repCount
-    }
+    // if (this.editMode) {
+    //   const training = this.trainingService.getTraining(this.id);
+    //   // const exercise = this.exerciseToTrainingService.pushToTraining()
+    //   // console.log(exercise.exerciseName)
+    //   trainingName = training.trainingName
+    //   trainingImage = training.trainingImage
+    //   // exercises = exercise.exerciseName
+    //   // setCount = training.setCount
+    //   // repCount = training.repCount
+    // }
     this.trainingForm = new FormGroup({
       trainingName: new FormControl(trainingName, Validators.required),
       trainingImage: new FormControl(trainingImage, Validators.required),

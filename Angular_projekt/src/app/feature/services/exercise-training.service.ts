@@ -1,23 +1,22 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { ReplaySubject, Subject } from "rxjs";
 
 import { ExerciseModel } from "../models/exercise.model";
 
 @Injectable({ providedIn: 'root' })
 export class ExerciseToTrainingService{
 
-    private exercise: ExerciseModel[] = [];
+    private exercise: ExerciseModel;
 
-    exerciseChanged = new Subject<ExerciseModel[]>();
+    exerciseChanged = new ReplaySubject<ExerciseModel>();
 
     pullExercise(exercise: ExerciseModel) {
-        this.exercise.pop()
-        this.exercise.push(exercise);
-        this.exerciseChanged.next(this.exercise.slice());
+        console.log(exercise)
+        this.exercise = exercise
       }
     
     pushToTraining(){
-        return this.exercise[0]
+        return this.exercise
     }
 
 }

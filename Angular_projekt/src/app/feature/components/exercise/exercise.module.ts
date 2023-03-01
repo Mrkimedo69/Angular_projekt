@@ -24,7 +24,6 @@ import { ExerciseRoutingModule } from "./exercise-routing.module";
     ],
     imports: [
         CommonModule,
-        AppRoutingModule,
         SharedModule,
         ReactiveFormsModule,
         ExerciseRoutingModule

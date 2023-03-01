@@ -22,7 +22,6 @@ import { TrainingRoutingModule } from "./training-routing.module";
     ],
     imports: [
         CommonModule,
-        AppRoutingModule,
         SharedModule,
         ReactiveFormsModule,
         TrainingRoutingModule

@@ -15,16 +15,27 @@
         Manage Training <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <!-- <li><a style="cursor: pointer" (click)="addExercise()">Add Here Saved Exercise</a></li> -->
+        <li><a style="cursor: pointer" (click)="addExercise()">Add Here Saved Exercise</a></li>
         <li><a style="cursor: pointer" (click)="onEditTraining()">Edit Training</a></li>
         <li><a style="cursor: pointer" (click)="onDeleteTraining()">Delete Training</a></li>
       </ul>
     </div>
   </div>
 </div>
-<!-- <div class="row">
-  <div class="col-xs-12">Sets: {{ training.setCount }}</div>
-</div>
-<div class="row">
-  <div class="col-xs-12">Reps: {{ training.repCount }}</div>
-</div> -->
+<br />
+<a
+  style="cursor: pointer"
+  routerLinkActive="active"
+  class="list-group-item clearfix"
+  *ngFor="let trainingEl of training?.exercises"
+  (click)="redirectDetailsExercise(trainingEl.id)"
+>
+  <div>
+    <div class="pull-left">
+      <h4 class="list-group-item-heading">{{ trainingEl?.exerciseName }}</h4>
+    </div>
+    <span class="pull-right">
+      <img [src]="trainingEl?.exerciseImage" class="img-responsive" style="max-height: 50px" />
+    </span>
+  </div>
+</a>
