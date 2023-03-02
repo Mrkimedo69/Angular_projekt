@@ -11,7 +11,6 @@ export class ExerciseToTrainingService{
     exerciseChanged = new ReplaySubject<ExerciseModel>();
 
     pullExercise(exercise: ExerciseModel) {
-        console.log(exercise)
         this.exercise = exercise
       }
     

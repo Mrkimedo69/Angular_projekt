@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
-import { AppRoutingModule } from "src/app/app-routing.module";
 
 import { TrainingDetailsComponent } from "./training-details/training-details.component";
 import { TrainingEditComponent } from "./training-edit/training-edit.component";
