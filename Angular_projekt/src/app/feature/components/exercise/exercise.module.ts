@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { AppRoutingModule } from "src/app/app-routing.module";
 
 import { EditExerciseComponent } from "./edit-exercise/edit-exercise.component";
 import { ExerciseDetailsComponent } from "./exercise-details/exercise-details.component";
@@ -27,7 +26,7 @@ import { ExerciseRoutingModule } from "./exercise-routing.module";
         SharedModule,
         ReactiveFormsModule,
         ExerciseRoutingModule
-    ],
+    ]
 })
 
 export class ExerciseModule{}
