@@ -2,6 +2,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExercisePieceComponent } from './exercise-piece.component';
 
+
+const mockExercise = {
+  id: '',
+  exerciseName: '',
+  exerciseDescription: '',
+  exerciseVideo: '',
+  exerciseImage: ''
+}
+
 describe('ExercisePieceComponent', () => {
   let component: ExercisePieceComponent;
   let fixture: ComponentFixture<ExercisePieceComponent>;
