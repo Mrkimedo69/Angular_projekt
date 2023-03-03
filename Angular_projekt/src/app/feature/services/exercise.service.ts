@@ -27,10 +27,10 @@ export class ExerciseService{
        return this.http.get<ExerciseModel[]>('http://localhost:3001/exercise');
     }
 
-    getExercise(id: string) {
-      this.exer_field = this.exercises[id]
-      return this.exer_field
-   }
+  //   getExercise(id: string) {
+  //     this.exer_field = this.exercises[id]
+  //     return this.exer_field
+  //  }
 
     addExercise(exercise: ExerciseModel):Observable<ExerciseModel[]> {
       return this.http.post<ExerciseModel[]>('http://localhost:3001/exercise/add',exercise)

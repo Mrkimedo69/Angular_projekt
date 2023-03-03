@@ -1,6 +1,6 @@
 import { Type } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ExerciseModel } from 'src/app/feature/models/exercise.model';
 
@@ -20,9 +20,11 @@ export class EditExerciseComponent implements OnInit {
 
   constructor(private exerciseService: ExerciseService,
     private router: Router,
-    private route: ActivatedRoute) {}
+    private route: ActivatedRoute,
+    private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.initForm()
     this.route.params
       .subscribe(
         (params: Params) => {
@@ -30,21 +32,17 @@ export class EditExerciseComponent implements OnInit {
           this.editMode = params.id != null;
           this.exerciseService.getExercises().subscribe((res) => {
           this.exercise = res.find(p => p.id === this.id)
+         
           })
         }
       );
-      this.initForm()
   }
 
   onSubmit() {
     if (this.editMode) {
-      this.exerciseService.updateExercise(this.id, this.exerciseForm.value).subscribe((res)=>{
-        console.log(res)
-      });
+      this.exerciseService.updateExercise(this.id, this.exerciseForm.value).subscribe();
     } else {
-      this.exerciseService.addExercise(this.exerciseForm.value).subscribe((res) =>{
-        console.log(res)
-      });
+      this.exerciseService.addExercise(this.exerciseForm.value).subscribe();
     }
     this.onCancel();
   }
@@ -55,25 +53,35 @@ export class EditExerciseComponent implements OnInit {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  private initForm() {
-    let exerciseName = '';
-    let exerciseDescription = ''
-    let exerciseImage = ''
-    let exerciseVideo = ''
+  patchExerciseValues(){
+      this.exerciseForm.controls['exerciseName'].patchValue(
+        this.exercise.exerciseName
+      )
+      this.exerciseForm.controls['exerciseDescription'].patchValue(
+        this.exercise.exerciseDescription
+      )
+      this.exerciseForm.controls['exerciseImage'].patchValue(
+        this.exercise.exerciseImage
+      )
+      this.exerciseForm.controls['exerciseVideo'].patchValue(
+        this.exercise.exerciseVideo
+      )
+  }
+   initForm() {
 
-    // if (this.editMode) {
-    //   const exercise = this.exerciseService.getExercise(this.id);
-    //   exerciseName = exercise.exerciseName
-    //   exerciseDescription = exercise.exerciseDescription
-    //   exerciseImage = exercise.exerciseImage
-    //   exerciseVideo= exercise.exerciseVideo
-    //  }
-
-    this.exerciseForm = new FormGroup({
-      exerciseName: new FormControl(exerciseName, Validators.required),
-      exerciseDescription: new FormControl(exerciseDescription, Validators.required),
-      exerciseImage: new FormControl(exerciseImage, Validators.required),
-      exerciseVideo: new FormControl(exerciseVideo, Validators.required),
+    // this.exerciseForm = new FormGroup({
+    //   exerciseName: new FormControl('', Validators.required),
+    //   exerciseDescription: new FormControl('', Validators.required),
+    //   exerciseImage: new FormControl('', Validators.required),
+    //   exerciseVideo: new FormControl('', Validators.required),
+    // });
+    this.exerciseForm = this.fb.group({
+      exerciseName: ['', Validators.required],
+      exerciseVideo: ['', Validators.required],
+      exerciseImage: ['', Validators.required],
+      exerciseDescription: ['', Validators.required] 
     });
+
+
   }
 }

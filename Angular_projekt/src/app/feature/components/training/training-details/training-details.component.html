@@ -15,7 +15,11 @@
         Manage Training <span class="caret"></span>
       </button>
       <ul class="dropdown-menu">
-        <li><a style="cursor: pointer" (click)="addExercise()">Add Here Saved Exercise</a></li>
+        <li>
+          <a style="cursor: pointer" (click)="addExercise()" *ngIf="!isNewExercise"
+            >Add Here Saved Exercise</a
+          >
+        </li>
         <li><a style="cursor: pointer" (click)="onEditTraining()">Edit Training</a></li>
         <li><a style="cursor: pointer" (click)="onDeleteTraining()">Delete Training</a></li>
       </ul>
