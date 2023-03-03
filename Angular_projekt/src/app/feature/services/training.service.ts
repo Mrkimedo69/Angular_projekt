@@ -28,10 +28,10 @@ export class TrainingService{
     }
   
   
-    getTraining(id: string) {
-      this.training_field = this.trainings[id]
-      return this.training_field
-   }
+  //   getTraining(id: string) {
+  //     this.training_field = this.trainings[id]
+  //     return this.training_field
+  //  }
 
     addTraining(training: TrainingModel):Observable<TrainingModel[]> {
       return this.http.post<TrainingModel[]>('http://localhost:3001/training/add',training)

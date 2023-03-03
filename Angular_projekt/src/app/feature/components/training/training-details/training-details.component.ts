@@ -15,6 +15,7 @@ export class TrainingDetailsComponent {
   training: TrainingModel;
   id: string;
   exercises: ExerciseModel
+  isNewExercise = false
 
   constructor(private trainingService: TrainingService,
               private route: ActivatedRoute,
@@ -51,6 +52,7 @@ export class TrainingDetailsComponent {
 
   addExercise(){
     this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
+    this.isNewExercise = false
     
   }
   redirectDetailsExercise(id){

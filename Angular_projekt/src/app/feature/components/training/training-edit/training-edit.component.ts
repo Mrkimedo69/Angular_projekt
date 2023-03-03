@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { TrainingModel } from 'src/app/feature/models/training.model';
 
-import { ExerciseToTrainingService } from 'src/app/feature/services/exercise-training.service';
 import { TrainingService } from 'src/app/feature/services/training.service';
 
 @Component({
@@ -21,7 +20,7 @@ export class TrainingEditComponent {
     private route: ActivatedRoute,
     private trainingService: TrainingService,
     private router: Router,
-    private exerciseToTrainingService: ExerciseToTrainingService
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -40,13 +39,9 @@ export class TrainingEditComponent {
 
   onSubmit() {
     if (this.editMode) {
-      this.trainingService.updateTraining(this.id, this.trainingForm.value).subscribe((res)=>{
-        console.log(res)
-      });
+      this.trainingService.updateTraining(this.id, this.trainingForm.value).subscribe();
     } else {
-      this.trainingService.addTraining(this.trainingForm.value).subscribe((res)=>{
-        console.log(res)
-      });
+      this.trainingService.addTraining(this.trainingForm.value).subscribe();
     }
     this.onCancel();
   }
@@ -55,29 +50,20 @@ export class TrainingEditComponent {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
+  patchTrainingValues(){
+    this.trainingForm.controls['trainingName'].patchValue(
+      this.training.trainingName
+    )
+    this.trainingForm.controls['trainingImage'].patchValue(
+      this.training.trainingImage
+    )
+}
   private initForm() {
-    let trainingName = '';
-    let trainingImage = '';
-    // let exercises = ''
-    // let setCount = '';
-    // let repCount = '';
 
-
-    // if (this.editMode) {
-    //   const training = this.trainingService.getTraining(this.id);
-    //   // const exercise = this.exerciseToTrainingService.pushToTraining()
-    //   // console.log(exercise.exerciseName)
-    //   trainingName = training.trainingName
-    //   trainingImage = training.trainingImage
-    //   // exercises = exercise.exerciseName
-    //   // setCount = training.setCount
-    //   // repCount = training.repCount
-    // }
-    this.trainingForm = new FormGroup({
-      trainingName: new FormControl(trainingName, Validators.required),
-      trainingImage: new FormControl(trainingImage, Validators.required),
-      // setCount: new FormControl(setCount, Validators.required),
-      // repCount: new FormControl(repCount, Validators.required),
+    this.trainingForm = this.fb.group({
+      trainingName: ['', Validators.required],
+      trainingImage: ['', Validators.required]
     });
+
   }
 }
