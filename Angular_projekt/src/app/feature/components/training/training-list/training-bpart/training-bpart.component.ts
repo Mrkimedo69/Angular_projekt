@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TrainingModel } from 'src/app/feature/models/training.model';
-import { TrainingService } from 'src/app/feature/services/training.service';
+import { TrainingModel } from 'src/app/core/models/training.model';
+import { TrainingService } from 'src/app/feature/components/training/services/training.service';
 
 @Component({
   selector: 'app-training-bpart',
