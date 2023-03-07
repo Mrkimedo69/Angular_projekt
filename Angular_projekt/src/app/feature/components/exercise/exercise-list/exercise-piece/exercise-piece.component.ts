@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ExerciseModel } from 'src/app/feature/models/exercise.model';
-import { ExerciseService } from 'src/app/feature/services/exercise.service';
+import { ExerciseModel } from 'src/app/core/models/exercise.model';
+import { ExerciseService } from 'src/app/feature/components/exercise/services/exercise.service';
 
 @Component({
   selector: 'app-exercise-piece',

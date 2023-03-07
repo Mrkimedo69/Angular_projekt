@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { ExerciseModel } from 'src/app/feature/models/exercise.model';
+import { ExerciseModel } from 'src/app/core/models/exercise.model';
 
 @Component({
   selector: 'app-exercise-list',

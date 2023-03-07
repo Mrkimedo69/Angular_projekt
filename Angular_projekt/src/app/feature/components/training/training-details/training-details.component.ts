@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { TrainingModel } from 'src/app/feature/models/training.model';
-import { TrainingService } from 'src/app/feature/services/training.service';
-import { ExerciseToTrainingService } from 'src/app/feature/services/exercise-training.service';
-import { ExerciseModel } from 'src/app/feature/models/exercise.model';
+import { TrainingModel } from 'src/app/core/models/training.model';
+import { TrainingService } from 'src/app/feature/components/training/services/training.service';
+import { ExerciseToTrainingService } from 'src/app/core/services/exercise-training.service';
+import { ExerciseModel } from 'src/app/core/models/exercise.model';
 
 @Component({
   selector: 'app-training-details',
@@ -53,7 +53,6 @@ export class TrainingDetailsComponent {
   addExercise(){
     this.training.exercises.push(this.exerciseToTrainingService.pushToTraining())
     this.isNewExercise = false
-    
   }
   redirectDetailsExercise(id){
     this.router.navigateByUrl("/exercise/"+id);

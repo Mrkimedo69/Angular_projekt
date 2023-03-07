@@ -2,9 +2,9 @@ import { Type } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { ExerciseModel } from 'src/app/feature/models/exercise.model';
+import { ExerciseModel } from 'src/app/core/models/exercise.model';
 
-import { ExerciseService } from 'src/app/feature/services/exercise.service';
+import { ExerciseService } from 'src/app/feature/components/exercise/services/exercise.service';
 
 @Component({
   selector: 'app-edit-exercise',

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 import { HttpClient } from '@angular/common/http';
 
-import { ExerciseModel } from "../models/exercise.model";
+import { ExerciseModel } from "src/app/core/models/exercise.model";
 
 
 @Injectable({ providedIn: 'root' })
