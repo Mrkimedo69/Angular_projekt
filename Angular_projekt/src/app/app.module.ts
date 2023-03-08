@@ -26,8 +26,10 @@ import { CoreModule } from './core/core.module';
     SharedModule,
     CoreModule,
     NgxsModule.forRoot(),
+    NgxsModule.forRoot([], { developmentMode: true }),
+    NgxsLoggerPluginModule.forRoot({disabled: false /* collapsed: true */}),
     NgxsLoggerPluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
