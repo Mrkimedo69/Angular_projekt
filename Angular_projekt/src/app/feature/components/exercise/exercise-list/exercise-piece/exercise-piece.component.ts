@@ -1,8 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 
 import { ExerciseModel } from 'src/app/core/models/exercise.model';
 import { ExerciseService } from 'src/app/feature/components/exercise/services/exercise.service';
+import { GetExerciseInfo } from '../../store/exercise.action';
+import { ExerciseState } from '../../store/exercise.state';
 
 @Component({
   selector: 'app-exercise-piece',
@@ -11,17 +15,24 @@ import { ExerciseService } from 'src/app/feature/components/exercise/services/ex
 })
 export class ExercisePieceComponent implements OnInit{
 
+  @Select(ExerciseState.getExercisesInfo)
+  exercises$: Observable<ExerciseModel[]>
+
   constructor(
-    private exerciseService: ExerciseService,
-    private router: Router
+    private router: Router,
+    private store: Store
     ){}
 
   exercises: ExerciseModel []
 
   ngOnInit(){
-    this.exerciseService.getExercises().subscribe((res) => {
+    this.store.dispatch(new GetExerciseInfo())
+    this.exercises$.subscribe((res) => {
       this.exercises = res
     })
+    // this.exerciseService.getExercises().subscribe((res) => {
+    //   this.exercises = res
+    // })
   }
 
   redirectDetailsExercise(id){

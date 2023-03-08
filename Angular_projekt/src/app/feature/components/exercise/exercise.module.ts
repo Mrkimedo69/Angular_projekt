@@ -9,6 +9,8 @@ import { ExercisePieceComponent } from "./exercise-list/exercise-piece/exercise-
 import { ExerciseComponent } from "./exercise.component";
 import { SharedModule } from "src/app/shared/shared.module";
 import { ExerciseRoutingModule } from "./exercise-routing.module";
+import { NgxsModule } from "@ngxs/store";
+import { ExerciseState } from "./store/exercise.state";
 
 
 
@@ -25,7 +27,11 @@ import { ExerciseRoutingModule } from "./exercise-routing.module";
         CommonModule,
         SharedModule,
         ReactiveFormsModule,
-        ExerciseRoutingModule
+        ExerciseRoutingModule,
+        NgxsModule.forFeature([ExerciseState])
+    ],
+    exports: [
+        ExerciseComponent
     ]
 })
 
