@@ -4,7 +4,6 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 import { ExerciseModel } from 'src/app/core/models/exercise.model';
-import { ExerciseService } from 'src/app/feature/components/exercise/services/exercise.service';
 import { GetExerciseInfo } from '../../store/exercise.action';
 import { ExerciseState } from '../../store/exercise.state';
 
