@@ -1,10 +1,13 @@
-import { Type } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { ExerciseModel } from 'src/app/core/models/exercise.model';
 
 import { ExerciseService } from 'src/app/feature/components/exercise/services/exercise.service';
+import { AddExercise, EditExercise, GetExerciseInfo } from '../store/exercise.action';
+import { ExerciseState } from '../store/exercise.state';
 
 @Component({
   selector: 'app-edit-exercise',
@@ -16,12 +19,16 @@ export class EditExerciseComponent implements OnInit {
   editMode = false;
   exerciseForm: FormGroup;
   exercise: ExerciseModel
+
+  @Select(ExerciseState.getExercisesInfo)
+  exercises$: Observable<ExerciseModel[]>
   
 
   constructor(private exerciseService: ExerciseService,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder) {}
+    private fb: FormBuilder,
+    private store: Store) {}
 
   ngOnInit() {
     this.initForm()
@@ -30,10 +37,14 @@ export class EditExerciseComponent implements OnInit {
         (params: Params) => {
           this.id = params.id
           this.editMode = params.id != null;
-          this.exerciseService.getExercises().subscribe((res) => {
-          this.exercise = res.find(p => p.id === this.id)
-         
+          // this.exerciseService.getExercises().subscribe((res) => {
+          // this.exercise = res.find(p => p.id === this.id)
+          this.store.dispatch(new GetExerciseInfo())
+          this.exercises$.subscribe((res) => {
+            this.exercise = res.find(p => p.id === this.id)
           })
+         
+          // })
         }
       );
   }
@@ -41,8 +52,10 @@ export class EditExerciseComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.exerciseService.updateExercise(this.id, this.exerciseForm.value).subscribe();
+      this.store.dispatch(new EditExercise(this.exerciseForm.value))
     } else {
-      this.exerciseService.addExercise(this.exerciseForm.value).subscribe();
+      this.store.dispatch(new AddExercise(this.exerciseForm.value))
+      // this.exerciseService.addExercise(this.exerciseForm.value).subscribe();
     }
     this.onCancel();
   }

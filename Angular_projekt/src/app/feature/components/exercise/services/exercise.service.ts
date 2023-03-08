@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { ExerciseModel } from "src/app/core/models/exercise.model";
+import { OnInit } from "@angular/core";
 
 
 @Injectable({ providedIn: 'root' })
-export class ExerciseService{
+export class ExerciseService implements OnInit{
 
     exerciseChanged = new Subject<ExerciseModel[]>();
 
@@ -15,8 +17,18 @@ export class ExerciseService{
     exercises: ExerciseModel[]
 
     exer_field: ExerciseModel
+    id: string
   
-    constructor( private http: HttpClient) {}
+    constructor( private http: HttpClient,
+      private route: ActivatedRoute) {}
+
+    ngOnInit() {
+      this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = params.id
+    })
+  }
   
     setExercise(exercise: ExerciseModel[]) {
       this.exercise = exercise;
@@ -38,6 +50,7 @@ export class ExerciseService{
     }
   
     updateExercise(id: string, newExercise: ExerciseModel):Observable<ExerciseModel[]> {
+      console.log(this.id)
       return this.http.put<any>('http://localhost:3001/exercise/edit',{id,newExercise})
     }
   
