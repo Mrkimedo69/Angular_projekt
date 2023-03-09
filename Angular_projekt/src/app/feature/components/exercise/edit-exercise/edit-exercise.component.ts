@@ -51,8 +51,8 @@ export class EditExerciseComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      this.exerciseService.updateExercise(this.id, this.exerciseForm.value).subscribe();
-      this.store.dispatch(new EditExercise(this.exerciseForm.value))
+      //his.exerciseService.updateExercise(this.id, this.exerciseForm.value).subscribe();
+      this.store.dispatch(new EditExercise(this.id,this.exerciseForm.value))
     } else {
       this.store.dispatch(new AddExercise(this.exerciseForm.value))
       // this.exerciseService.addExercise(this.exerciseForm.value).subscribe();

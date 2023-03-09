@@ -53,11 +53,9 @@ export class ExerciseState{
        return this.exerciseService.addExercise(payload)
     }
     @Action(EditExercise)
-    editExercise({getState,patchState}: StateContext<ExerciseStateModel>, {payload}: EditExercise){
+    editExercise({getState,patchState}: StateContext<ExerciseStateModel>, payload: EditExercise){
        const state = getState()
-       patchState({
-        exercise: [...state.exercise,payload]
-       }) 
+        return this.exerciseService.updateExercise(payload.id,payload.payload)
     //    return this.exerciseService.updateExercise(payload)
     }
 
