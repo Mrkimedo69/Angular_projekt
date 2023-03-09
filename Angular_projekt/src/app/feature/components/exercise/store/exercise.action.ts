@@ -10,5 +10,5 @@ export class AddExercise{
 }
 export class EditExercise{
     static readonly type = "[Edit exercise] edit exercise"
-    constructor (public payload: ExerciseModel){}
+    constructor (public id: string , public payload: ExerciseModel){}
 }
